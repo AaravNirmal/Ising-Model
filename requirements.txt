@@ -1,0 +1,9 @@
+pandas==2.2.0
+
+numpy==1.26.4
+scipy==1.15.1
+
+matplotlib==3.8.2
+
+cython==3.0.8
+setuptools==69.0.3
