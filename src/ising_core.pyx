@@ -1,10 +1,12 @@
 import numpy as np
 cimport numpy as cnp
 from libc.math cimport exp
+from libc.stdlib cimport rand, RAND_MAX
 import cython
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
+@cython.cdivision(True)
 def cython_metropolis(cnp.int8_t[:, :] lattice, float T, float J, int steps):
     cdef int L = lattice.shape[0]
     cdef int x, y, i, neighbors
@@ -12,8 +14,8 @@ def cython_metropolis(cnp.int8_t[:, :] lattice, float T, float J, int steps):
     cdef int s_i
 
     for i in range(steps):
-        x = np.random.randint(0, L)
-        y = np.random.randint(0, L)
+        x = rand() % L
+        y = rand() % L
         s_i = lattice[x, y]
 
         neighbors = (lattice[(x + 1) % L, y] +
@@ -23,7 +25,7 @@ def cython_metropolis(cnp.int8_t[:, :] lattice, float T, float J, int steps):
         
         dE = 2.0 * J * s_i * neighbors
 
-        if dE < 0 or np.random.rand() < exp(-dE / T):
+        if dE < 0 or (rand() / float(RAND_MAX)) < exp(-dE / T):
             lattice[x, y] *= -1
             
     return np.asarray(lattice)
