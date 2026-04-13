@@ -1,4 +1,5 @@
 High-Performance Ising Model Simulation:
+
     This repository contains a high-performance numerical simulation of the 2D Ising model, utilizing the Metropolis-Hastings algorithm to study phase transitions in ferromagnetic systems. The core computational engine is implemented in Cython to achieve near-C speeds while maintaining a Pythonic interface for data analysis.
     Technical Architecture: The project is structured to decouple the heavy numerical lifting from the user interface and visualization layers:
         1. Computational Core (src/ising_core.pyx): Written in Cython to bypass the Python Global Interpreter Lock (GIL). This module handles the intensive bit-level operations and energy calculations for the square lattice.
