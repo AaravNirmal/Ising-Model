@@ -7,7 +7,7 @@ from src.pythonbenchmark import python_metropolis
 def pareto_analysis(size = 1, alpha = 1.5):
     return (1.0 - np.random.random(size)) ** (-1.0 / (alpha - 1.0))
 
-def run_stress_test(num_sims = 1e3):
+def run_stress_test(num_sims = 100):
     results = []
 
     lambda_steps = 1000
@@ -47,12 +47,12 @@ def run_stress_test(num_sims = 1e3):
 
     df = pd.DataFrame(results)
     output_path = 'data/output/stress_test_results.csv'
-    df.to_csv(output_path, mode='w', index=False)
-    print("\n--- Stress Test Complete ---")
+    df.to_csv(output_path, mode='a', index=False)
+    print("\n    Stress Test Complete    ")
     print(f"Avg Python Time: {df['py_time'].mean():.4f}s")
     print(f"Avg Cython Time: {df['cy_time'].mean():.4f}s")
     print(f"Max Speedup Recorded: {df['speedup'].max():.2f}x")
 
 
 if __name__ == "__main__":
-    run_stress_test(1000)
+    run_stress_test()

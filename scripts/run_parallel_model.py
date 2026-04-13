@@ -1,11 +1,11 @@
 import pandas as pd
 import os
 import numpy as np
-from src.model import IsingModel
+from src.parallel_model import IsingModel
 from src.visualization import create_interactive_plot
 
 def main():
-    print("--- Starting Ising Model Simulation ---")
+    print("   Starting Ising Model Simulation   ")
     csv_path = 'data/input/parameters.csv'
     params_df = pd.read_csv(csv_path)
     params = params_df.iloc[0].to_dict()
@@ -14,23 +14,25 @@ def main():
     
     sim = IsingModel(L=L, T=T, J=J)
     history = []
-    
-    interval = 1000 if steps >= 1000 else steps // 10
-    if interval == 0: interval = 1
-    num_snapshots = steps // interval
 
-    print(f"Running {steps} steps. Recording {num_snapshots} snapshots...")
-    
-    for i in range(num_snapshots):
-        sim.run_simulation(total_steps=interval)
-        history.append(sim.lattice.copy())
-    
+    total_sweeps = int(steps // (L * L))
+    total_sweeps = max(1, total_sweeps)
+
+    num_snapshots = min(200, total_sweeps) 
+
+
+    print(f"Running {steps} steps ({total_sweeps} sweeps). Recording {num_snapshots} snapshots...")
+    for i in range(int(num_snapshots)):
+        sim.run_simulation(sweeps= min (1, total_sweeps / num_snapshots))
+        history.append(sim.lattice.reshape(L,L).copy())
+
     history_path = "data/output/history/sim_history.npz"
+
     os.makedirs(os.path.dirname(history_path), exist_ok=True)
     np.savez_compressed(history_path, *history)
-    
-    print(f"History saved to {history_path}. Opening slider...")
+    print(f"History saved to {history_path}")
     create_interactive_plot(history_path)
+
 
 if __name__ == "__main__":
     main()
