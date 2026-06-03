@@ -2,28 +2,30 @@ import numpy as np
 import sys
 
 try:
-    from .lang import ising_core
-    cython_metropolis = ising_core.cython_metropolis
-    print("src/model.py: Cython engine loaded successfully.")
+    from .lang import ising_core_p
+    cython_metropolis_parallel = ising_core_p.cython_metropolis
+    print("src/model.py: Parallel Cython engine loaded successfully.")
 except ImportError as e:
-    cython_metropolis = None
-    print(f"src/model.py: Could not load Cython engine. Error: {e}")
+    cython_metropolis_parallel = None
+    print(f"src/model.py: Could not load Parallel Cython engine. Error: {e}")
 
 class IsingModel:
     def __init__(self, L, T, J=1.0):
         self.L = L
         self.T = T
         self.J = J
-        self.lattice = np.random.choice([1, -1], size=(L, L)).astype(np.int8)
+        self.lattice = np.random.choice([1, -1], size=L*L).astype(np.int8)
 
-    def run_simulation(self, total_steps):
-        if cython_metropolis is None:
-            raise RuntimeError("Cython module is missing. Please compile it first.")
-        self.lattice = cython_metropolis(
+    def run_simulation(self, sweeps):
+        if cython_metropolis_parallel is None:
+            raise RuntimeError("Parallel Cython module is missing. Run setup.py first.")
+        
+        self.lattice = cython_metropolis_parallel(
             self.lattice, 
             float(self.T), 
             float(self.J), 
-            int(total_steps)
+            int(sweeps),
+            int(self.L)
         )
 
     def get_magnetization(self):

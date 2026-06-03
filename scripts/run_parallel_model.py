@@ -16,7 +16,7 @@ def main():
     history = []
 
     total_sweeps = int(steps // (L * L))
-    total_sweeps = max(1, total_sweeps)
+    total_sweeps = max(50, total_sweeps)
 
     num_snapshots = min(200, total_sweeps) 
 
