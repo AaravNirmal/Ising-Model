@@ -7,10 +7,6 @@ import os
 def plot_three_tier_performance():
     path = 'data/output/stress_test_all_new.csv'
     
-    python_val = 224939.2912991128
-    serial_val = 19881532.274669345
-    parallel_val = 78579168.2317951
-
     if not os.path.exists(path):
         print(f"Error: {path} not found. Run batch_all.py first!")
         return
@@ -20,10 +16,15 @@ def plot_three_tier_performance():
     T, J = 2.27, 1.0
     df['complexity'] = (df['L']**2) * np.log(T/J) * df['total_steps']
 
+    # 1. FIX THE PARALLEL THROUGHPUT MATH (Multiply by parallel_boost instead of dividing)
     df['Python Throughput'] = df['total_steps'] / df['python_time']
     df['Serial Cython Throughput'] = df['total_steps'] / df['serial_time']
-    
-    df['Parallel Optimized Throughput'] = (df['total_steps'] * df['parallel_boost']) / df['serial_time']
+    df['Parallel Optimized Throughput'] = (df['total_steps'] / df['serial_time']) * df['parallel_boost']
+
+    # 2. DYNAMICALLY CALCULATE TRUE MEANS FROM THE DATA (Stop using hardcoded constants)
+    python_val = df['Python Throughput'].mean()
+    serial_val = df['Serial Cython Throughput'].mean()
+    parallel_val = df['Parallel Optimized Throughput'].mean()
 
     plot_df = df.melt(
         id_vars=['complexity', 'L'], 
@@ -42,7 +43,7 @@ def plot_three_tier_performance():
         hue='Engine',
         size='L',
         sizes=(20, 200),
-        palette=['#95a5a6', '#3498db', '#e74c3c'], # Grey, Blue, Red
+        palette=['#95a5a6', '#3498db', '#e74c3c'], 
         alpha=0.6, 
         edgecolor='w'
     )
@@ -52,9 +53,11 @@ def plot_three_tier_performance():
     ax.set_xlabel(r'Complexity Metric: $L^2 \cdot \ln(T/J) \cdot \text{steps}$', fontsize=13)
     ax.set_ylabel('Throughput (Spin-Flips / Second)', fontsize=13)
     ax.set_title('Architectural Performance Scaling: Python vs. Serial Cython vs. Parallel 1D', fontsize=16, pad=20)
-    ax.axhline(y=python_val, color='#95a5a6', linestyle='--', linewidth=1.5, alpha=0.8)
-    ax.axhline(y=serial_val, color='#3498db', linestyle='--', linewidth=1.5, alpha=0.8)
-    ax.axhline(y=parallel_val, color='#e74c3c', linestyle='--', linewidth=1.5, alpha=0.8)
+    
+    # 3. DRAW THE HORIZONTAL LINES BASED ON CRUNCHED DATA MEANS
+    ax.axhline(y=python_val, color='#95a5a6', linestyle='--', linewidth=1.5, alpha=0.8, label=f'Python Mean ({python_val:.2e})')
+    ax.axhline(y=serial_val, color='#3498db', linestyle='--', linewidth=1.5, alpha=0.8, label=f'Serial Mean ({serial_val:.2e})')
+    ax.axhline(y=parallel_val, color='#e74c3c', linestyle='--', linewidth=1.5, alpha=0.8, label=f'Parallel Mean ({parallel_val:.2e})')
     
     plt.legend(title="Execution Engine / Lattice Size", bbox_to_anchor=(1.02, 1), loc='upper left')
 

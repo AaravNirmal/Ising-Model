@@ -9,14 +9,14 @@ from src.parallel_model import IsingModel as ParallelModel
 def pareto_analysis(size=1, alpha=1.5):
     return (1.0 - np.random.random(size)) ** (-1.0 / (alpha - 1.0))
 
-def run_stress_test(num_sims=100):
-    results = []
+def run_stress_test(num_sims):
     base_flips = 100000 
     T = 2.269
     J = 1.0
     output_path = 'data/output/stress_test_all_new.csv'
     
-    print(f"Executing {num_sims} sims: Python vs Serial Cython vs Parallel/1D")
+    print(f"Executing {num_sims} sims: Python vs Serial Cython vs Parallel/1D", flush=True)
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     for i in range(num_sims):
         t_variance = np.random.normal(0, 0.2)
@@ -48,11 +48,11 @@ def run_stress_test(num_sims=100):
         sim_p.run_simulation(sweeps=sweeps)
         parallel_time = t.perf_counter() - start_p
 
-
         cython_boost = python_time / serial_time if serial_time > 0 else 0
         parallel_boost = (serial_time / parallel_time) * (actual_parallel_flips / total_steps) if parallel_time > 0 else 0
 
-        results.append({
+        # Construct single dictionary row directly for immediate disk dump
+        single_result = {
             'L': L,
             'total_steps': total_steps,
             'python_time': python_time,
@@ -61,24 +61,17 @@ def run_stress_test(num_sims=100):
             'cython_boost': cython_boost,
             'parallel_boost': parallel_boost,
             'total_speedup': python_time / (parallel_time * (total_steps / actual_parallel_flips))
-        })
+        }
 
-        if i % 50 ==0:
-            df_chunk = pd.DataFrame(results)
-            os.makedirs(os.path.dirname(output_path), exist_ok=True)
-            df_chunk.to_csv(output_path, mode='a', index=False, header=not os.path.exists(output_path))
-            results = []
-        if L > 512:
-            t.sleep(2)
-        if (i % 1000 == 0 and num_sims > 1000):
-            t.sleep(300)
+        # Write to disk instantly so you see performance updates line-by-line
+        df_single_row = pd.DataFrame([single_result])
+        header_needed = not os.path.exists(output_path)
+        df_single_row.to_csv(output_path, mode='a', index=False, header=header_needed)
+        
+        if (i + 1) % 10 == 0:
+            print(f"Completed {i + 1}/{num_sims} simulations... (Last L: {L})", flush=True)
 
-    df = pd.DataFrame(results)
-    
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    df.to_csv(output_path, mode='a', index=False, header=not os.path.exists(output_path))
-    
-    print(f"\nBenchmark complete. Data appended to {output_path}")
+    print(f"\nBenchmark complete. Data appended to {output_path}", flush=True)
 
 if __name__ == "__main__":
-    run_stress_test(847)
+    run_stress_test(num_sims=10)
