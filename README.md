@@ -15,7 +15,8 @@ High-Performance Ising Model Simulation:
         1. Python 3.8+
         2. C++ Build Tools (MSVC for Windows or GCC for Linux/macOS)
         3. Dependencies: numpy, matplotlib, pandas, cython 
-    Compilation: The Cython source must be compiled into a machine-specific binary before the simulation can run which is done by writing the following into the terminal: python setup.py build_ext --inplace
+    Compilation: The Cython source must be compiled into a machine-specific binary before the simulation can run which is done by writing the following into the terminal: 
+        python setup.py build_ext --inplace
     Usage: Configure simulation variables ($L, T, J, \text{steps}$) in data/input/parameters.csv.
-        Run the simulation:Bashpython main.py
+        Run the simulation: python main.py
         The program outputs the final magnetization to the console and exports lattice visualizations to the output directory.

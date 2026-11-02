@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 import numpy as np
-from src.parallel_model import IsingModel
+from src.parallel_c_model import IsingModel
 from src.visualization import create_interactive_plot
 
 def main():
