@@ -18,7 +18,7 @@
         ],
         "name": "src.ising_core",
         "sources": [
-            "src/ising_core.pyx"
+            "src/lang/ising_core.pyx"
         ]
     },
     "module_name": "src.ising_core"
@@ -1509,7 +1509,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char *__pyx_f[] = {
-  "src\\\\ising_core.pyx",
+  "src\\\\lang\\\\ising_core.pyx",
   "<stringsource>",
   ".venv\\\\Lib\\\\site-packages\\\\numpy\\\\__init__.cython-30.pxd",
   ".venv\\\\Lib\\\\site-packages\\\\Cython\\\\Includes\\\\cpython\\\\type.pxd",
@@ -3304,7 +3304,6 @@ static const char __pyx_k_cython_metropolis[] = "cython_metropolis";
 static const char __pyx_k_pyx_unpickle_Enum[] = "__pyx_unpickle_Enum";
 static const char __pyx_k_asyncio_coroutines[] = "asyncio.coroutines";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_src_ising_core_pyx[] = "src\\ising_core.pyx";
 static const char __pyx_k_strided_and_direct[] = "<strided and direct>";
 static const char __pyx_k_strided_and_indirect[] = "<strided and indirect>";
 static const char __pyx_k_Invalid_shape_in_axis[] = "Invalid shape in axis ";
@@ -3313,6 +3312,7 @@ static const char __pyx_k_Cannot_index_with_type[] = "Cannot index with type '";
 static const char __pyx_k_MemoryView_of_r_object[] = "<MemoryView of %r object>";
 static const char __pyx_k_MemoryView_of_r_at_0x_x[] = "<MemoryView of %r at 0x%x>";
 static const char __pyx_k_contiguous_and_indirect[] = "<contiguous and indirect>";
+static const char __pyx_k_src_lang_ising_core_pyx[] = "src\\lang\\ising_core.pyx";
 static const char __pyx_k_Dimension_d_is_not_direct[] = "Dimension %d is not direct";
 static const char __pyx_k_Index_out_of_bounds_axis_d[] = "Index out of bounds (axis %d)";
 static const char __pyx_k_Step_may_not_be_zero_axis_d[] = "Step may not be zero (axis %d)";
@@ -3582,7 +3582,7 @@ typedef struct {
   PyObject *__pyx_n_s_size;
   PyObject *__pyx_n_s_spec;
   PyObject *__pyx_n_s_src_ising_core;
-  PyObject *__pyx_kp_s_src_ising_core_pyx;
+  PyObject *__pyx_kp_s_src_lang_ising_core_pyx;
   PyObject *__pyx_n_s_start;
   PyObject *__pyx_n_s_step;
   PyObject *__pyx_n_s_steps;
@@ -3810,7 +3810,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_size);
   Py_CLEAR(clear_module_state->__pyx_n_s_spec);
   Py_CLEAR(clear_module_state->__pyx_n_s_src_ising_core);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_src_ising_core_pyx);
+  Py_CLEAR(clear_module_state->__pyx_kp_s_src_lang_ising_core_pyx);
   Py_CLEAR(clear_module_state->__pyx_n_s_start);
   Py_CLEAR(clear_module_state->__pyx_n_s_step);
   Py_CLEAR(clear_module_state->__pyx_n_s_steps);
@@ -4016,7 +4016,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_size);
   Py_VISIT(traverse_module_state->__pyx_n_s_spec);
   Py_VISIT(traverse_module_state->__pyx_n_s_src_ising_core);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_src_ising_core_pyx);
+  Py_VISIT(traverse_module_state->__pyx_kp_s_src_lang_ising_core_pyx);
   Py_VISIT(traverse_module_state->__pyx_n_s_start);
   Py_VISIT(traverse_module_state->__pyx_n_s_step);
   Py_VISIT(traverse_module_state->__pyx_n_s_steps);
@@ -4260,7 +4260,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_size __pyx_mstate_global->__pyx_n_s_size
 #define __pyx_n_s_spec __pyx_mstate_global->__pyx_n_s_spec
 #define __pyx_n_s_src_ising_core __pyx_mstate_global->__pyx_n_s_src_ising_core
-#define __pyx_kp_s_src_ising_core_pyx __pyx_mstate_global->__pyx_kp_s_src_ising_core_pyx
+#define __pyx_kp_s_src_lang_ising_core_pyx __pyx_mstate_global->__pyx_kp_s_src_lang_ising_core_pyx
 #define __pyx_n_s_start __pyx_mstate_global->__pyx_n_s_start
 #define __pyx_n_s_step __pyx_mstate_global->__pyx_n_s_step
 #define __pyx_n_s_steps __pyx_mstate_global->__pyx_n_s_steps
@@ -19194,7 +19194,7 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
   return __pyx_r;
 }
 
-/* "src/ising_core.pyx":7
+/* "src/lang/ising_core.pyx":7
  * import cython
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -19377,7 +19377,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cython_metropolis", 1);
 
-  /* "src/ising_core.pyx":11
+  /* "src/lang/ising_core.pyx":11
  * @cython.cdivision(True)
  * def cython_metropolis(cnp.int8_t[:, :] lattice, float T, float J, int steps):
  *     cdef int L = lattice.shape[0]             # <<<<<<<<<<<<<<
@@ -19386,7 +19386,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
  */
   __pyx_v_L = (__pyx_v_lattice.shape[0]);
 
-  /* "src/ising_core.pyx":16
+  /* "src/lang/ising_core.pyx":16
  *     cdef int s_i
  * 
  *     for i in range(steps):             # <<<<<<<<<<<<<<
@@ -19398,7 +19398,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "src/ising_core.pyx":17
+    /* "src/lang/ising_core.pyx":17
  * 
  *     for i in range(steps):
  *         x = rand() % L             # <<<<<<<<<<<<<<
@@ -19407,7 +19407,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
  */
     __pyx_v_x = (rand() % __pyx_v_L);
 
-    /* "src/ising_core.pyx":18
+    /* "src/lang/ising_core.pyx":18
  *     for i in range(steps):
  *         x = rand() % L
  *         y = rand() % L             # <<<<<<<<<<<<<<
@@ -19416,7 +19416,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
  */
     __pyx_v_y = (rand() % __pyx_v_L);
 
-    /* "src/ising_core.pyx":19
+    /* "src/lang/ising_core.pyx":19
  *         x = rand() % L
  *         y = rand() % L
  *         s_i = lattice[x, y]             # <<<<<<<<<<<<<<
@@ -19427,7 +19427,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
     __pyx_t_5 = __pyx_v_y;
     __pyx_v_s_i = (*((__pyx_t_5numpy_int8_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_lattice.data + __pyx_t_4 * __pyx_v_lattice.strides[0]) ) + __pyx_t_5 * __pyx_v_lattice.strides[1]) )));
 
-    /* "src/ising_core.pyx":21
+    /* "src/lang/ising_core.pyx":21
  *         s_i = lattice[x, y]
  * 
  *         neighbors = (lattice[(x + 1) % L, y] +             # <<<<<<<<<<<<<<
@@ -19437,7 +19437,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
     __pyx_t_5 = ((__pyx_v_x + 1) % __pyx_v_L);
     __pyx_t_4 = __pyx_v_y;
 
-    /* "src/ising_core.pyx":22
+    /* "src/lang/ising_core.pyx":22
  * 
  *         neighbors = (lattice[(x + 1) % L, y] +
  *                      lattice[(x - 1 + L) % L, y] +             # <<<<<<<<<<<<<<
@@ -19447,7 +19447,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
     __pyx_t_6 = (((__pyx_v_x - 1) + __pyx_v_L) % __pyx_v_L);
     __pyx_t_7 = __pyx_v_y;
 
-    /* "src/ising_core.pyx":23
+    /* "src/lang/ising_core.pyx":23
  *         neighbors = (lattice[(x + 1) % L, y] +
  *                      lattice[(x - 1 + L) % L, y] +
  *                      lattice[x, (y + 1) % L] +             # <<<<<<<<<<<<<<
@@ -19457,7 +19457,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
     __pyx_t_8 = __pyx_v_x;
     __pyx_t_9 = ((__pyx_v_y + 1) % __pyx_v_L);
 
-    /* "src/ising_core.pyx":24
+    /* "src/lang/ising_core.pyx":24
  *                      lattice[(x - 1 + L) % L, y] +
  *                      lattice[x, (y + 1) % L] +
  *                      lattice[x, (y - 1 + L) % L])             # <<<<<<<<<<<<<<
@@ -19467,7 +19467,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
     __pyx_t_10 = __pyx_v_x;
     __pyx_t_11 = (((__pyx_v_y - 1) + __pyx_v_L) % __pyx_v_L);
 
-    /* "src/ising_core.pyx":23
+    /* "src/lang/ising_core.pyx":23
  *         neighbors = (lattice[(x + 1) % L, y] +
  *                      lattice[(x - 1 + L) % L, y] +
  *                      lattice[x, (y + 1) % L] +             # <<<<<<<<<<<<<<
@@ -19476,7 +19476,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
  */
     __pyx_v_neighbors = ((((*((__pyx_t_5numpy_int8_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_lattice.data + __pyx_t_5 * __pyx_v_lattice.strides[0]) ) + __pyx_t_4 * __pyx_v_lattice.strides[1]) ))) + (*((__pyx_t_5numpy_int8_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_lattice.data + __pyx_t_6 * __pyx_v_lattice.strides[0]) ) + __pyx_t_7 * __pyx_v_lattice.strides[1]) )))) + (*((__pyx_t_5numpy_int8_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_lattice.data + __pyx_t_8 * __pyx_v_lattice.strides[0]) ) + __pyx_t_9 * __pyx_v_lattice.strides[1]) )))) + (*((__pyx_t_5numpy_int8_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_lattice.data + __pyx_t_10 * __pyx_v_lattice.strides[0]) ) + __pyx_t_11 * __pyx_v_lattice.strides[1]) ))));
 
-    /* "src/ising_core.pyx":26
+    /* "src/lang/ising_core.pyx":26
  *                      lattice[x, (y - 1 + L) % L])
  * 
  *         dE = 2.0 * J * s_i * neighbors             # <<<<<<<<<<<<<<
@@ -19485,7 +19485,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
  */
     __pyx_v_dE = (((2.0 * __pyx_v_J) * __pyx_v_s_i) * __pyx_v_neighbors);
 
-    /* "src/ising_core.pyx":28
+    /* "src/lang/ising_core.pyx":28
  *         dE = 2.0 * J * s_i * neighbors
  * 
  *         if dE < 0 or (rand() / float(RAND_MAX)) < exp(-dE / T):             # <<<<<<<<<<<<<<
@@ -19503,7 +19503,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_12) {
 
-      /* "src/ising_core.pyx":29
+      /* "src/lang/ising_core.pyx":29
  * 
  *         if dE < 0 or (rand() / float(RAND_MAX)) < exp(-dE / T):
  *             lattice[x, y] *= -1             # <<<<<<<<<<<<<<
@@ -19514,7 +19514,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
       __pyx_t_10 = __pyx_v_y;
       *((__pyx_t_5numpy_int8_t *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_lattice.data + __pyx_t_11 * __pyx_v_lattice.strides[0]) ) + __pyx_t_10 * __pyx_v_lattice.strides[1]) )) *= -1;
 
-      /* "src/ising_core.pyx":28
+      /* "src/lang/ising_core.pyx":28
  *         dE = 2.0 * J * s_i * neighbors
  * 
  *         if dE < 0 or (rand() / float(RAND_MAX)) < exp(-dE / T):             # <<<<<<<<<<<<<<
@@ -19524,7 +19524,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
     }
   }
 
-  /* "src/ising_core.pyx":31
+  /* "src/lang/ising_core.pyx":31
  *             lattice[x, y] *= -1
  * 
  *     return np.asarray(lattice)             # <<<<<<<<<<<<<<
@@ -19564,7 +19564,7 @@ static PyObject *__pyx_pf_3src_10ising_core_cython_metropolis(CYTHON_UNUSED PyOb
   __pyx_t_14 = 0;
   goto __pyx_L0;
 
-  /* "src/ising_core.pyx":7
+  /* "src/lang/ising_core.pyx":7
  * import cython
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -20666,7 +20666,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_size, __pyx_k_size, sizeof(__pyx_k_size), 0, 0, 1, 1},
     {&__pyx_n_s_spec, __pyx_k_spec, sizeof(__pyx_k_spec), 0, 0, 1, 1},
     {&__pyx_n_s_src_ising_core, __pyx_k_src_ising_core, sizeof(__pyx_k_src_ising_core), 0, 0, 1, 1},
-    {&__pyx_kp_s_src_ising_core_pyx, __pyx_k_src_ising_core_pyx, sizeof(__pyx_k_src_ising_core_pyx), 0, 0, 1, 0},
+    {&__pyx_kp_s_src_lang_ising_core_pyx, __pyx_k_src_lang_ising_core_pyx, sizeof(__pyx_k_src_lang_ising_core_pyx), 0, 0, 1, 0},
     {&__pyx_n_s_start, __pyx_k_start, sizeof(__pyx_k_start), 0, 0, 1, 1},
     {&__pyx_n_s_step, __pyx_k_step, sizeof(__pyx_k_step), 0, 0, 1, 1},
     {&__pyx_n_s_steps, __pyx_k_steps, sizeof(__pyx_k_steps), 0, 0, 1, 1},
@@ -20871,7 +20871,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__20);
   __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Enum, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(1, 1, __pyx_L1_error)
 
-  /* "src/ising_core.pyx":7
+  /* "src/lang/ising_core.pyx":7
  * import cython
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -20881,7 +20881,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__22 = PyTuple_Pack(11, __pyx_n_s_lattice, __pyx_n_s_T, __pyx_n_s_J, __pyx_n_s_steps, __pyx_n_s_L, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_i, __pyx_n_s_neighbors, __pyx_n_s_dE, __pyx_n_s_s_i); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__22);
   __Pyx_GIVEREF(__pyx_tuple__22);
-  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_ising_core_pyx, __pyx_n_s_cython_metropolis, 7, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_lang_ising_core_pyx, __pyx_n_s_cython_metropolis, 7, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -21989,7 +21989,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_Enum, __pyx_t_7) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "src/ising_core.pyx":1
+  /* "src/lang/ising_core.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as cnp
  * from libc.math cimport exp
@@ -21999,7 +21999,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_7) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "src/ising_core.pyx":7
+  /* "src/lang/ising_core.pyx":7
  * import cython
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -22011,7 +22011,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_cython_metropolis, __pyx_t_7) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "src/ising_core.pyx":1
+  /* "src/lang/ising_core.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as cnp
  * from libc.math cimport exp

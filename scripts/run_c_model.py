@@ -1,8 +1,7 @@
 import pandas as pd
 import os
 import numpy as np
-import time as t
-from src.model import IsingModel
+from src.python_model import IsingModel
 from src.visualization import create_interactive_plot
 
 def main():
@@ -21,12 +20,9 @@ def main():
     num_snapshots = steps // interval
     
     print(f"Running {steps} steps. Recording {num_snapshots} snapshots...")
-    start = t.perf_counter()
     for i in range(num_snapshots):
         sim.run_simulation(total_steps=interval)
         history.append(sim.lattice.copy())
-    end = t.perf_counter()
-    total_time = end - start
     history_path = "data/output/history/sim_history.npz"
     os.makedirs(os.path.dirname(history_path), exist_ok=True)
     np.savez_compressed(history_path, *history)
